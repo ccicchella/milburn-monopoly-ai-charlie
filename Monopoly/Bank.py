@@ -4,6 +4,7 @@ from Tiles.RailroadTile import RailroadTile
 from Tiles.UtilityTile import UtilityTile
 import numpy as np
 from Player import *
+
 class Bank:
     """
     Represents the Monopoly bank.

@@ -15,6 +15,7 @@ class GoTile(Tile, Player):
         self.color = 'Black'
         self.players_on_tile = 0
         self.type= 'Go'
+        self.owner = 'Bank'
         super().__init__()
 
     def GO(self):

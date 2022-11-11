@@ -57,7 +57,18 @@ class Player:
     def addMoney(self, money):
         self.balance += money  
     def payMoney(self, money):
-        self.balance -= money
+        if(self.balance >= money):
+            self.balance -= money
+            return True
+        else:
+            return False
+    def payTax(self, money, player):
+        if(self.balance >= money):
+            self.balance -= money
+            player.balance += money
+            return True
+        else:
+            return False
     def updatePos(self, pos):
         self.position = pos
     def getPos(self):
@@ -260,34 +271,7 @@ class Player:
                 tiles.append(tile)
         return tiles
     # TODO: Create visual buttons for all of these that are printed out in the window
-    """
-    Function that runs a process of a turn for each player
-    """
-    def myTurn(self, game):
-        if(self.in_jail == False):
-            self.rollDice()
-            x = self.position[0]
-            y = self.position[1]
-            tile = game.board.board[x][y]
-            
-            if(tile.owner != self and tile.owner == game.bank):
-                yn = input('Would you like to buy the property: Y/N')
-                if(yn == 'Y'):
-                    
-
-                    
-                    self.action(tile, game)
-                else:
-                    game.bank.auctionProperty(tile, game.players)
-            elif(tile.owner != self):
-                rent = tile.calcRent()
-                print('You have to pay {} ${} for rent'.format(tile.owner.name, ))
-                if(self.checkBankruptcy(tile.calcRent()) == True):
-                    game.playerBankrupt(self)
-                else:
-                    if(self.balance < rent):
-                        print('You have to either take out a loan of {} or mortgage one of your properties'.format(
-                            rent - self.balance))
+   
     
 
 

@@ -7,8 +7,8 @@ class Actions:
     def buyProperty(self, tile):
         #print(tile.owner)
         #print(self.player.bank)
-        if ((tile.type != 'Street') or (tile.type != '') or (tile.type != 'Railroad')\
-            or (tile.type != 'Utility')):
+        if ((tile.type == 'Street') or(tile.type == 'Railroad')\
+            or (tile.type == 'Utility')):
             if(tile.owner == self.player):
                 return False
             
@@ -25,8 +25,8 @@ class Actions:
         else:
             return False
     def unmortgageProperty(self, tile):
-        if ((tile.type != 'Street') or (tile.type != '') or (tile.type != 'Railroad')\
-            or (tile.type != 'Utility')):
+        if ((tile.type == 'Street') or (tile.type == '') or (tile.type == 'Railroad')\
+            or (tile.type == 'Utility')):
             if(tile.owner != self.player):
                 return False
             elif(tile.owner == self.player):
@@ -79,8 +79,8 @@ class Actions:
 
     def mortgageProperty(self, tile, board, group):
         indx = tile.group_list[group]
-        if ((tile.type != 'Street') or (tile.type != '') or (tile.type != 'Railroad')\
-            or (tile.type != 'Utility')):
+        if ((tile.type == 'Street') or (tile.type == 'Railroad')\
+            or (tile.type == 'Utility')):
             if(tile.owner != self.player):
                 return False
             else:
@@ -126,6 +126,9 @@ class Actions:
                 return False
         else:
             return False
+    
+
+
 
                 
 

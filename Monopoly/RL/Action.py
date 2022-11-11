@@ -1,4 +1,3 @@
-from xml.dom.xmlbuilder import DocumentLS
 from Actions import Actions
 
 class Action:
@@ -33,6 +32,7 @@ class Action:
         
 
     def spendOnTile(self, tile):
+        
         if(self.actions.buyProperty(tile) == False):
             if(self.actions.unmortgageProperty(tile) == False):
                 self.actions.buildHouse(tile, self.board, self.group)

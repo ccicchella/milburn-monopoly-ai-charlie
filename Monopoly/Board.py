@@ -12,7 +12,7 @@ from Tiles.JailTile import JailTile
 from Tiles.UtilityTile import UtilityTile
 from Tiles.ParkingTile import ParkingTile
 from Tiles.GoToJailTile import GoToJailTile
-
+from Tiles.ChanceTile import ChanceTile as chance
 import pandas as pd
 import pygame
 import random
@@ -44,9 +44,12 @@ class Board:
         self.board = self.make_board()
         #Initializes the deck for the Community Chest
         self.community = []
+        self.chance = []
         for func in getmembers(chest, isfunction):
             self.community.append(func[1])
-        random.shuffle(self.community)
+        for func in getmembers(chance, isfunction):
+            self.chance.append(func[1])
+        random.shuffle(self.chance)
         # TODO: Add attribute to store all the players in the game
 
     def draw(self, window: pygame.Surface):
@@ -190,9 +193,37 @@ class Board:
     Functions for drawing community chest and chance cards 
     """
     def drawCommunity(self, player):
-        func = self.community[0]
-        chest.func(player, self.players)
-        self.community.pop(0)
-        self.community.append(func)
-    def drawChance():
-        pass
+        try:
+            func = self.community[0]
+            
+            r= func(player, self.players)
+            self.community.pop(0)
+            self.community.append(func)
+        except:
+            
+            
+            
+            self.community.pop(0)
+            func = self.community[0]
+            r= func(player, self.players)
+            self.community.pop(0)
+            self.community.append(func)
+
+        return r, func 
+    def drawChance(self, player):
+        try:
+            func = self.chance[0]
+            
+            r= func(player, self.players)
+            self.chance.pop(0)
+            self.chance.append(func)
+        except:
+            
+            
+            
+            self.chance.pop(0)
+            func = self.chance[0]
+            r= func(player, self.players)
+            self.chance.pop(0)
+            self.chance.append(func)
+        return r, func

@@ -10,7 +10,7 @@ MAX_MEMORY = 100_000
 learning_rate = 0.001
 class Agent(Player):
     def __init__(self, board, bank):
-        self.epoch = 0
+        
         self.games = 0
         self.model = QNet(4, 150, 3)
         self.trainer = QTrainer(self.model, learning_rate, 0.9)
@@ -25,6 +25,7 @@ class Agent(Player):
         #IMPORTANT IF STATE SIZE IS N THEN QNET INPUT MUST BE N
         # TODO: Create a better state
         # TODO: Use pruning in the future to find the optimal state(Do not worry about it for now)
+        print(tile.group)
         state = [player.worth, player.position[0], player.position[1], tile.group]
         
         return np.array(state, dtype = int)
@@ -38,7 +39,7 @@ class Agent(Player):
     by model prediction, and use it to set the same index to one and rest zeros
     """
     def getAction(self, state):
-        self.epsilon = 100 - self.games
+        self.epsilon = 1000 - self.games
         final_action = [0,0,0]
         if random.randint(0, 240) < self.epsilon:
             move = random.randint(0,2)
