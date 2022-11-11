@@ -38,10 +38,10 @@ class Game:
         """
         Draws game onto the window.
         """
-        self.board.draw(self.window)
+        #self.board.draw(self.window)
 
 
-        pygame.display.update()
+        #pygame.display.update()
     
     def drawPlayers(self):
         
@@ -293,7 +293,7 @@ def main():
             scores2.append(score2) 
             
             games.append(agent.games)
-            plot(games, scores, scores2)
+            #plot(games, scores, scores2)
 
 if __name__ == "__main__":
     main()
