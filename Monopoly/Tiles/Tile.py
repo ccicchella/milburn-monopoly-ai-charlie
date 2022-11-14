@@ -22,10 +22,12 @@ class Tile:
         'Blue' : (0, 128, 255),
         'DarkGreen' : (5, 98, 36),
         'White' : (255, 255, 255),
-        'BabyBlue' : (158, 204, 255)
+        'BabyBlue' : (158, 204, 255),
+        'Gold' : (255, 215, 0),
+        'Lime' : (191, 255, 0)
     }
 
-    WIDTH, HEIGHT = 70, 70  # Tile size
+    WIDTH, HEIGHT = 70,70  # Tile size
     FONT = pygame.font.SysFont('segoeui', 7, True)
 
 
@@ -50,7 +52,10 @@ class Tile:
         'White', 
         'DarkGreen',
         'BabyBlue',
-        'Red']
+        'Red',
+        'Gold',
+        'Black',
+        'Lime']
         self.group = self.group_list.index(self.color)
         
     def goJail(player):

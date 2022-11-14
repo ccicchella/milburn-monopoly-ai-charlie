@@ -11,13 +11,13 @@ class UtilityTile(Tile):
         
         self.type = attributes['Space']
         self.name = attributes['Name']
-        self.owner = bank
+        self.owner = 0
         self.price = attributes['Price']
         self.mortgage_value = self.price/2
         self.is_mortgaged = False
         #self.position = attributes['Position(X)', 'Position(Y)']
         self.position = [attributes['Position(X)'], attributes['Position(Y)']]
-        self.color = 'DarkGreen'
+        self.color = 'Lime'
         super().__init__()
     
     #sets ownwer to player
@@ -35,9 +35,10 @@ class UtilityTile(Tile):
                 return 4 * self.owner.movecount
 
     #Morgages the property. Returns the mortgage value.
-    def mortgage(self):
+    def mortgage(self, player):
         self.is_mortgaged = True
-        self.owner.mortgage(self)
+        player.addMoney(self.mortgage_value)
+        
         return self.mortgage_value
 
     #Unmortgages the property. Returns the amount owed to bank value.

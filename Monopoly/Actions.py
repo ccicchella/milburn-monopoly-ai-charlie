@@ -12,7 +12,7 @@ class Actions:
             if(tile.owner == self.player):
                 return False
             
-            elif(tile.owner == self.player.bank):
+            elif(tile.owner == 0):
 
                 if(self.player.balance >= tile.price):
                     #print('Bought')
@@ -99,33 +99,35 @@ class Actions:
         max_t = 0
         t_sell = 0
         indx = tile.group_list[group]
-        if(tile.isCompletedGroup(board, self.player)):
-            for t in board.group[indx]:
-                if(t.house_count >= max_t):
-                    max_t = t.house_count
-                    t_sell = t
-            if(max_t > 0):
-                t_sell.sellHouse(self.player)
-                return True
-        else:
-            return False
+        if ((tile.type == 'Street') or (tile.type == 'Railroad')):
+            if(tile.isCompletedGroup(board, self.player)):
+                for t in board.group[indx]:
+                    if(t.house_count >= max_t):
+                        max_t = t.house_count
+                        t_sell = t
+                if(max_t > 0):
+                    t_sell.sellHouse(self.player)
+                    return True
+            else:
+                return False
     
     def sellHotel(self, tile, board, group):
         max_t = 0
         t_sell = 0
         indx = tile.group_list[group]
-        if(tile.isCompletedGroup(board, self.player)):
-            for t in board.group[indx]:
-                if(t.hotel_count >= max_t):
-                    max_t = t.house_count
-                    t_sell = t
-            if(max_t > 0) and (self.bank.canSellHotel()):
-                t_sell.sellHotel(self.player)
-                return True
+        if ((tile.type == 'Street') or (tile.type == 'Railroad')):
+            if(tile.isCompletedGroup(board, self.player)):
+                for t in board.group[indx]:
+                    if(t.hotel_count >= max_t):
+                        max_t = t.house_count
+                        t_sell = t
+                if(max_t > 0) and (self.bank.canSellHotel()):
+                    t_sell.sellHotel(self.player)
+                    return True
+                else:
+                    return False
             else:
                 return False
-        else:
-            return False
     
 
 

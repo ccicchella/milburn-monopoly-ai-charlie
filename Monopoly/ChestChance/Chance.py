@@ -1,41 +1,7 @@
-import numpy as np
-from Tiles.Tile import Tile
-import pygame
+class Chance:
 
-
-
-
-class ChanceTile(Tile):
-    """
-    Represents a "Chance" tile on the board.
-    """
-     # Tile size
-    FONT = pygame.font.SysFont('segoeui', 7, True)
-
-
-
-    FONT = pygame.font.SysFont('segoeui', 12, True)  # Tile font
-
-    def __init__(self, attributes: dict):
-        """
-        Initializes the "Chance" tile.
-        """
-
-        
-        self.color = 'White'
-        self.name = '?'
-        self.type = 'Chance'
-        self.owner = "Bank"
-        self.group = 9
-        
-  
-        self.deck = []
-        self.players_on_tile = 0
-        super().__init__()
-        
-            
-        
-        
+    def __init__():
+        pass
     def goToGo(player, players):
         player.pos = [0,0]
         player.addMoney(200)
@@ -125,7 +91,7 @@ class ChanceTile(Tile):
         
         
     def goReadingRailroad(player, players):
-        player.pos = np.array([0,5])
+        player.pos =[0,5]
         return True
         
     def goBoardwalk(player, players):
@@ -147,11 +113,3 @@ class ChanceTile(Tile):
     def crosswordWin(player, players):
         player.addMoney(100)
         return True
-
-    
-    def addPlayer(self):
-        self.players_on_tile += 1
-    def removePlayer(self):
-        self.players_on_tile -= 1
-    def getPlayerOnTile(self):
-        return self.players_on_tile

@@ -1,33 +1,8 @@
-import numpy as np
-import pygame
-import random
-from Tiles.Tile import Tile
-from Player import Player
-from Tiles.JailTile import JailTile
-class ChestTile(Tile):
-    """
-    Represents a "Community Chest" tile on the board.
-    """
-    
-    FONT = pygame.font.SysFont('segoeui', 7, True)
+class Chest:
 
 
-
-    FONT = pygame.font.SysFont('segoeui', 12, True)  # Tile font
-
-    def __init__(self, attributes, players):
-        """
-        Initializes the "Community Chest" tile.
-        """
-        #self.deck = []
-        self.players = players
-        self.color = 'DarkGreen'
-        self.name = 'Chance'
-        self.type = attributes['Space']
-        self.owner = "Bank"
-        self.group = 9
-        self.players_on_tile = 0
-        super().__init__()
+    def __init__():
+        pass
     def goToGo(player,players):
         
         player.updatePos([0,0])
@@ -78,12 +53,3 @@ class ChestTile(Tile):
         player.addMoney(10)
     def inheritMoney(player,players):
         player.addMoney(100)
-    
-    def addPlayer(self):
-        self.players_on_tile += 1
-    def removePlayer(self):
-        self.players_on_tile -= 1
-    def getPlayerOnTile(self):
-        return self.players_on_tile
-    
-    

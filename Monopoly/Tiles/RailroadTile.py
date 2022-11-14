@@ -20,9 +20,9 @@ class RailroadTile(Tile):
         self.rent = attributes["Rent"]
         self.mortgage_value = self.price/2
         self.is_mortgaged = False
-        self.owner = bank
+        self.owner = 0
         self.bank = bank
-        self.color = 'Red'
+        self.color = 'Black'
         self.type = attributes['Space']
         super().__init__()
         self.trainstation_count = 0
@@ -45,9 +45,10 @@ class RailroadTile(Tile):
         else:
             return 0
    
-    def mortgage(self):
-       self.mortgage = True
-       return self.mortgage_value
+    def mortgage(self, player):
+        player.addMoney(self.mortgage_value)
+        self.is_mortgage = True
+        
    
     def unMortgage(self):
 

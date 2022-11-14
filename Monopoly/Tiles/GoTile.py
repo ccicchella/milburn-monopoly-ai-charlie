@@ -12,7 +12,7 @@ class GoTile(Tile, Player):
         
         self.name = attributes['Name']
         self.position = [attributes['Position(X)'],attributes['Position(Y)']]
-        self.color = 'Black'
+        self.color = 'White'
         self.players_on_tile = 0
         self.type= 'Go'
         self.owner = 'Bank'

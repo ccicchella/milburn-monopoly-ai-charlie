@@ -49,7 +49,7 @@ class Action:
                 self.actions.buildHouse(tile, self.board, tile.group)
                 self.actions.buildHotel(tile,self.board, tile.group)
     def getMoneyFromGroup(self, tile):
-        if ((tile.type == 'Street') or  (tile.type == 'Railroad')):
+        if ((tile.type == 'Street') or  (tile.type == 'Railroad') or(tile.type == 'Utility')):
             if(self.actions.sellHouse(tile, self.board, self.group) == False):
                 if self.actions.mortgageProperty(tile, self.board, self.group):
                     pass

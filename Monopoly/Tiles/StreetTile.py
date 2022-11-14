@@ -28,7 +28,7 @@ class StreetTile(Tile):
         ]
         self.price_build = attributes['PriceBuild']
         
-        self.owner = bank
+        self.owner = 0
         super().__init__()
     # set the owner to a Player object
     def setOwner(self, player):
@@ -140,7 +140,8 @@ class StreetTile(Tile):
 
     def addHouse(self, player):
         self.house_count += 1
-        player.bank.sellHouse(4)
+        player.bank.sellHouse(1)
+        print('Bought House')
 
         
     def sellHotel(self, player):

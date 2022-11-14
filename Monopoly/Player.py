@@ -11,13 +11,13 @@ class Player:
         self.position = [0,0] #[0,0] initially
         self.money_owed = 0
         self.bankrupt = False
-        a = np.zeros((4,10), dtype = int)
-        a = [list(a[0]),list(a[0]),list(a[0]),list(a[0])]
+        
         self.properties = []
         self.property_value = 0
         self.movecount = 0
         self.worth = balance
         self.bank = bank
+        self.rentCollected = 0
 
         
     # TODO: FINISH METHODS BELOW
@@ -36,7 +36,7 @@ class Player:
 
     def move(self):
         self.rollDice()
-        
+        random.seed(random.randint(1,1000))
         if(self.position[0]  + int((self.movecount + self.position[1]) / 10) > 3):
             self.position[0] = self.position[0] + int((self.movecount + self.position[1]) / 10) - 4
             self.position[1] = (self.position[1] + self.movecount) % 10

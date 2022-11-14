@@ -10,15 +10,17 @@ class TaxTile(Tile):
         Initializes the tax tile.
         """
         self.owner = 'IRS'
-        self.color = 'Black'
+        self.color = 'Gold'
         self.name = attributes['Name']
         self.type = attributes['Space']
         super().__init__()
  
     def incomeTax(self):
         #if player lands on Income Tax tile
-        return 200
+        return 75
 
     def luxuryTax(self):
         #if player lands on the Luxury Tax tile
-        return 75
+        return 200
+    def getTax(self, position):
+        pass

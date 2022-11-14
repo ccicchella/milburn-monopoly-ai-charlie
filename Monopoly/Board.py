@@ -1,5 +1,6 @@
 from inspect import getmembers, isfunction
-from Tiles.ChestTile import ChestTile as chest
+from ChestChance.Chest import Chest as chest
+from ChestChance.Chance import Chance as chance
 from Tiles.Tile import Tile
 from inspect import getmembers, isfunction
 from Tiles.GoTile import GoTile
@@ -12,7 +13,6 @@ from Tiles.JailTile import JailTile
 from Tiles.UtilityTile import UtilityTile
 from Tiles.ParkingTile import ParkingTile
 from Tiles.GoToJailTile import GoToJailTile
-from Tiles.ChanceTile import ChanceTile as chance
 import pandas as pd
 import pygame
 import random
