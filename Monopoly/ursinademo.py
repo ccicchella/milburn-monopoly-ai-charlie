@@ -17,6 +17,7 @@ player = Player('Player 1', 12000, bank)
 board = Board(bank, [player])
 board.make_board()
 enitites = []
+texts = []
 window.size  = (1920, 1020)
 window.fullscreen = True
 COLORS = {
@@ -38,12 +39,20 @@ COLORS = {
 for x, i in enumerate(board.board):
     for n,j in enumerate(i):
         if(x == 0):
-            enitites.append(Entity(model='cube', text = n,
-                color = COLORS[j.color], position = (2-n*0.6,-3.2, 0), scale=(0.6,0.6,0)))
-            print(board.board[0][n])
+            b = Button(text='{}'.format(j.name.split(' ')[0]), color =COLORS[j.color], 
+            scale=(0.07,0.07,0), text_origin=(0,0), position = (-0.07*n + 0.25,-0.4, 0))
+            b.text_entity.scale *= 0.5
+            enitites.append(b)
+            #enitites.append(Entity(model='cube', text = n,
+             #   color = COLORS[j.color], position = (2-n*0.6,-3.2, 0), scale=(0.6,0.6,0)))
+            
         elif(x == 1):
-            enitites.append(Entity(model='cube', 
-                color = COLORS[j.color], position = (2-10*0.6,-3.2 + n * 0.6, 0), scale=(0.6,0.6,0)))
+            b = Button(text='{}'.format(j.name.split(' ')[0]), color =COLORS[j.color], 
+            scale=(0.07,0.07,0), text_origin=(0,0), position = (-0.07*10 + 0.25,-0.4 + 0.07 * n, 0))
+            b.text_entity.scale *= 0.5
+            enitites.append(b)
+            #enitites.append(Entity(model='cube', 
+             #   color = COLORS[j.color], position = (2-10*0.6,-3.2 + n * 0.6, 0), scale=(0.6,0.6,0)))
         elif(x == 2):
             enitites.append(Entity(model='cube', 
                 color = COLORS[j.color], position = ((2-10*0.6)+n*0.6,-3.2 + 10 * 0.6, 0), scale=(0.6,0.6,0)))
@@ -190,6 +199,7 @@ class Game:
                     action= agent.getAction(state_old)
                     
                 """
+                action= agent.getAction(state_old)
                 self.actions[n%2].recieveAction(action)
 
                 state_new = agent.getState(player, self.board.board)

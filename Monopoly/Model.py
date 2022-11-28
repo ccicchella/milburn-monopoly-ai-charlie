@@ -38,7 +38,7 @@ class QTrainer:
     def __init__(self, model, lr, gamma):
         self.lr = lr
         self.gamma = gamma
-        self.model = model
+        self.model = model.to("cuda:0")
         self.optimizer = optim.Adam(model.parameters(), lr=self.lr)
         self.criterion = nn.MSELoss()
     """
@@ -46,11 +46,11 @@ class QTrainer:
     of the loss function
     """    
     def train_step(self, state, action, reward, next_state, done):
-        state = torch.tensor(state, dtype=torch.float)
-        next_state = torch.tensor(next_state, dtype=torch.float)
+        state = torch.tensor(state, dtype=torch.float).to("cuda:0")
+        next_state = torch.tensor(next_state, dtype=torch.float).to("cuda:0")
         #print(action)
-        action = torch.tensor(action, dtype=torch.long)
-        reward = torch.tensor(reward, dtype=torch.float)
+        action = torch.tensor(action, dtype=torch.long).to("cuda:0")
+        reward = torch.tensor(reward, dtype=torch.float).to("cuda:0")
         # (n, x)
 
         if len(state.shape) == 1:
@@ -63,7 +63,7 @@ class QTrainer:
             done = (done, )
 
         # 1: predicted Q values with current state
-        pred = self.model(state)
+        pred = self.model(state).to("cuda:0")
 
         target = pred.clone()
         

@@ -7,13 +7,13 @@ from Model import QNet, QTrainer
 from Player import Player
 from RL.Action import Action
 MAX_MEMORY = 100_000
-learning_rate = 0.001
+
 class Agent(Player):
     def __init__(self, board, bank):
         
         self.games = 0
         self.model = QNet(4, 150, 3)
-        self.trainer = QTrainer(self.model, learning_rate, 0.9)
+        self.trainer = QTrainer(self.model, 0.0001, 0.9)
         self.memory = deque(maxlen=1000000)
     """
     Creates a state that describes the env around our agent.
@@ -45,8 +45,8 @@ class Agent(Player):
             move = random.randint(0,2)
             final_action[move] = 1
         else:
-            state0 = torch.tensor(state, dtype = torch.float)
-            prediction = self.model(state0)
+            state0 = torch.tensor(state, dtype = torch.float).to("cuda:0")
+            prediction = self.model(state0).to("cuda:0")
             move = torch.argmax(prediction).item()
             final_action[move] = 1
         return final_action
